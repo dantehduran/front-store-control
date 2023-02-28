@@ -23,7 +23,7 @@ const getProducts = async () => {
 };
 
 export default function AddRecord({ closeAddRecord, mutate }: { closeAddRecord: () => void; mutate: () => void }) {
-	const { data } = useSWR<{ rows: Product[] }>(`${process.env.NEXT_PUBLIC_API}/products`, getProducts);
+	const { data, isLoading } = useSWR<{ rows: Product[] }>(`${process.env.NEXT_PUBLIC_API}/products`, getProducts);
 	const [product, setProduct] = useState<Product | null>((data && data.rows[0]) || null);
 	const [type, setType] = useState<'INCREMENT' | 'DECREMENT'>('INCREMENT');
 	const [amount, setAmount] = useState(1);
@@ -99,7 +99,7 @@ export default function AddRecord({ closeAddRecord, mutate }: { closeAddRecord: 
 						</RadioGroup>
 					</div>
 					<div>
-						<Listbox value={product} onChange={setProduct}>
+						<Listbox value={product} onChange={setProduct} disabled={isLoading}>
 							<Listbox.Label className="block mb-2 text-sm font-medium text-gray-900 ">Product</Listbox.Label>
 							<div className="relative mt-1">
 								<Listbox.Button className="relative w-full cursor-default rounded-lg bg-gray-50 py-2.5 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
