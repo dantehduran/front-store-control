@@ -86,6 +86,7 @@ export default function Login() {
 								</button>
 							</div>
 						</form>
+						<div className="text-gray-700">users: admin, test ;password:123456</div>
 						<div className="">
 							<div className="flex flex-wrap gap-y-2 justify-between items-center pt-14 text-center whitespace-nowrap">
 								<span className="flex-1 text-gray-500">© 2021 Stock Control. All rights reserved.</span>
